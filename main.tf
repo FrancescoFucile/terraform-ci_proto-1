@@ -26,7 +26,7 @@ EOF
 }
 
 # Here is a first lambda function that will run the code `hello_lambda.handler`
-module "lambda" {
+module "lambda_get" {
   source  = "./lambda"
   name    = "hello_lambda"
   runtime = "python2.7"
@@ -65,7 +65,7 @@ module "hello_get" {
   resource_id = "${aws_api_gateway_resource.hello_api_res_hello.id}"
   method      = "GET"
   path        = "${aws_api_gateway_resource.hello_api_res_hello.path}"
-  lambda      = "${module.lambda.name}"
+  lambda      = "${module.lambda_get.name}"
   region      = "${var.aws_region}"
   account_id  = "${data.aws_caller_identity.current.account_id}"
 }
